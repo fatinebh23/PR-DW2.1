@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Transacciones" />
         <module name="EJ1-postgres" />
+        <module name="Ej6_JDBC_SQLite" />
       </profile>
     </annotationProcessing>
   </component>
