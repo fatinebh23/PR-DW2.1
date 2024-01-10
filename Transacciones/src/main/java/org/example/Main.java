@@ -18,6 +18,7 @@ public class Main {
 
          ResultSet resultados = sentenciaSelect.executeQuery();
 
+         System.out.println("SELECT: ");
 
          while (resultados.next()){
             String nombre= resultados.getString("nombre");
@@ -28,18 +29,19 @@ public class Main {
              System.out.println(id);
          }
 
-
+         System.out.println("INSERTAR UN NOMBRE : ");
          //insertar un nombre
 
          PreparedStatement sentenciaInsert= con.prepareStatement(insertarnombre);
 
-         sentenciaInsert.setInt(1, 25);
+         sentenciaInsert.setInt(1, 26);
          sentenciaInsert.setString( 2,"ANA");
          sentenciaInsert.setInt( 3,56);
 
          sentenciaInsert.executeUpdate();
 
           resultados = sentenciaSelect.executeQuery();
+
 
          while (resultados.next()){
              String nombre= resultados.getString("nombre");
