@@ -8,7 +8,7 @@ public class OperacionesCRUDPilotos {
    // CrearPiloto(), que reciba un objeto Piloto y lo añada a la base de datos
     public static void crearPiloto(Path ruta, Piloto pilotoParam) {
 
-        try(Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString()){
+        try(Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString())){
 
             String insercionSQL = "INSERT INTO drivers ( code, forename, surname, dob, nationality, url) VALUES (?, ?, ?, ?, ?,?)";
 
@@ -37,49 +37,42 @@ public class OperacionesCRUDPilotos {
 
    /*2. LeerPiloto(), que reciba un entero y devuelva un objeto Piloto con la información del piloto
     con el driverid coincidente*/
-   public static void LeerPiloto(Path ruta, Piloto pilotoId) {
+   public static Piloto LeerPiloto(Path ruta, int paramID) {
 
-       try(Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString()){
+       try(Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString())){
 
-           String consultaSQL = "SELECT driverid, code, forename, surname, strftime('%d/%m/%Y', dob) AS formatted_dob, nationality " +
-                   "FROM drivers " +
-                   "WHERE driverid = ? ";
+           String sentenciaLeer = "SELECT * FROM pilotos WHERE driverid = ?";
 
-           // Creamos ahora una sentencia de modificación, en este caso un INSERT
+           PreparedStatement insercion = con.prepareStatement(sentenciaLeer);
 
-           PreparedStatement insercion = con.prepareStatement(consultaSQL);
+           insercion.setInt(1, paramID);
 
-           ResultSet resultados = insercion.executeQuery();
+               try (ResultSet resultSet = insercion.executeQuery()) {
+                   if (resultSet.next()) {
 
-
-           // Comprobamos los cambios realizados en la tabla drivers
-
-
-           while (resultados.next()) {
-               String circuit = resultados.getString("circuit");
-               Integer result = resultados.getInt("result");
-               Integer points = resultados.getInt("points");
-               Date date = resultados.getDate("date");
+                       String code = resultSet.getString("code");
+                       String nombre = resultSet.getString("forename");
+                       String surname = resultSet.getString("surname");
+                       String dob = resultSet.getString("dob");
+                       String nationality = resultSet.getString("nationality");
+                       String url = resultSet.getString("url");
 
 
-               System.out.println(circuit);
-               System.out.println(result);
-               System.out.println(points);
-               System.out.println(date);
-
-           }
-       }catch (SQLException e) {
-
+                       return new Piloto(code,nombre, surname,dob,nationality,url);
+                   }
+               }
+           } catch (SQLException e) {
            System.err.println(e.getClass().getName() + ": " + e.getMessage());
            throw new RuntimeException();
-       }
+           }
+       return null;
    }
-
-
-   }
-
 
 }
+
+
+
+
 
 
 
