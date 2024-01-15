@@ -39,32 +39,37 @@ public class OperacionesCRUDPilotos {
     con el driverid coincidente*/
    public static Piloto LeerPiloto(Path ruta, int paramID) {
 
-       try(Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString())){
+       try (Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString())) {
 
            String sentenciaLeer = "SELECT * FROM pilotos WHERE driverid = ?";
 
            PreparedStatement insercion = con.prepareStatement(sentenciaLeer);
 
            insercion.setInt(1, paramID);
+//hollaaa
+           ResultSet resultados = insercion.executeQuery();
 
-               try (ResultSet resultSet = insercion.executeQuery()) {
-                   if (resultSet.next()) {
+           try (ResultSet resultSet = insercion.executeQuery()) {
+               if (resultSet.next()) {
 
-                       String code = resultSet.getString("code");
-                       String nombre = resultSet.getString("forename");
-                       String surname = resultSet.getString("surname");
-                       String dob = resultSet.getString("dob");
-                       String nationality = resultSet.getString("nationality");
-                       String url = resultSet.getString("url");
+                   String code = resultSet.getString("code");
+                   String nombre = resultSet.getString("forename");
+                   String surname = resultSet.getString("surname");
+                   String dob = resultSet.getString("dob");
+                   String nationality = resultSet.getString("nationality");
+                   String url = resultSet.getString("url");
 
 
-                       return new Piloto(code,nombre, surname,dob,nationality,url);
-                   }
+                   return new Piloto(code, nombre, surname, dob, nationality, url);
                }
-           } catch (SQLException e) {
-           System.err.println(e.getClass().getName() + ": " + e.getMessage());
-           throw new RuntimeException();
+               resultados.close();
            }
+       } catch (SQLException e) {
+           System.err.println(e.getClass().getName() + ": " + e.getMessage());
+           throw new RuntimeException(e);
+       }
+
+
        return null;
    }
 
