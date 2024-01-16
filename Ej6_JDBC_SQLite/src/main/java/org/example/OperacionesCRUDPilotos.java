@@ -2,6 +2,8 @@ package org.example;
 
 import java.nio.file.Path;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperacionesCRUDPilotos {
 
@@ -50,7 +52,7 @@ public class OperacionesCRUDPilotos {
            ResultSet resultados = insercion.executeQuery();
 
            try (ResultSet resultSet = insercion.executeQuery()) {
-               if (resultSet.next()) {
+               while (resultSet.next()) {
 
                    String code = resultSet.getString("code");
                    String nombre = resultSet.getString("forename");
@@ -72,8 +74,40 @@ public class OperacionesCRUDPilotos {
 
        return null;
    }
+//    LeerPilotos(), que devuelva un listado completo de objetos Piloto.
+    public static List<Piloto> LeerPilotos(Path ruta) throws SQLException {
 
-}
+        List<Piloto> pilotos = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:" + ruta.toString())) {
+
+            String sql = "SELECT * FROM pilotos";
+
+            try (PreparedStatement statement = con.prepareStatement(sql);
+                 ResultSet resultSet = statement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    String code = resultSet.getString("code");
+                    String nombre = resultSet.getString("forename");
+                    String surname = resultSet.getString("surname");
+                    String dob = resultSet.getString("dob");
+                    String nationality = resultSet.getString("nationality");
+                    String url = resultSet.getString("url");
+
+
+                    Piloto piloto = new Piloto(code, nombre, surname, dob, nationality, url);
+                    pilotos.add(piloto);
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                throw new RuntimeException(e);
+            }
+
+
+            return null;
+        }
+
+
+    }}
 
 
 
