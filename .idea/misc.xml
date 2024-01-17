@@ -7,7 +7,13 @@
         <option value="$PROJECT_DIR$/Transacciones/pom.xml" />
         <option value="$PROJECT_DIR$/EJ1-postgres/pom.xml" />
         <option value="$PROJECT_DIR$/Ej6_JDBC_SQLite/pom.xml" />
+        <option value="$PROJECT_DIR$/EjemploPostGress/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/EjemploPostGress/pom.xml" />
+      </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
