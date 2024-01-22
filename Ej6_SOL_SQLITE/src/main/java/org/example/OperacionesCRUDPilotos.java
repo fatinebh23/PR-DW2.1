@@ -1,4 +1,4 @@
-package org.example;
+package org.example.ejercicios.Ejercicio6JDBCySQLite;
 
 import java.nio.file.Path;
 import java.sql.Connection;

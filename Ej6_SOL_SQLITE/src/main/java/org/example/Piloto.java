@@ -1,24 +1,41 @@
-package org.example;
+package org.example.ejercicios.Ejercicio6JDBCySQLite;
 
-import lombok.AllArgsConstructor;
+import java.time.LocalDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class Piloto {
+        // Atributos
+        private int driverId;
+        private String driverCode;
+        private String driverForename;
+        private String driverSurname;
+        private LocalDate driverDOB;
+        private String driverNationality;
+        private int constructorId;
+        private String url;
 
-  /*  Una clase Piloto que facilite la lectura y escritura de pilotos en la tabla drivers. Para hacerte la vida
-    más fácil, no tengas en cuenta la clave ajena que la tabla drivers tiene a la tabla constructors, es
-    decir, crea pilotos sin equipo*/
-
-
-    private String code ;
-    private  String forename;
-    private String surname ;
-    private String dob ;
-    private String nationality;
-    private String url ;
-
+        /**
+         * Constructor de Piloto
+         * @param driverId ID del piloto
+         * @param driverCode Código del piloto
+         * @param driverForename Nombre del piloto
+         * @param driverSurname Apellido del piloto
+         * @param driverDOB Fecha de nacimiento del piloto
+         * @param driverNationality Nacionalidad del piloto
+         * @param constructorId ID del constructor
+         * @param url URL del piloto
+         */
+        public Piloto(int driverId, String driverCode, String driverForename, String driverSurname, String driverDOB, String driverNationality, int constructorId, String url) {
+            this.driverId = driverId;
+            this.driverCode = driverCode;
+            this.driverForename = driverForename;
+            this.driverSurname = driverSurname;
+            this.driverDOB = LocalDate.parse(driverDOB);
+            this.driverNationality = driverNationality;
+            this.constructorId = constructorId;
+            this.url = url;
+        }
 }
