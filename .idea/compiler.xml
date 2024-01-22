@@ -7,8 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Ej6_SOL_SQLITE" />
         <module name="Transacciones" />
         <module name="EJ1-postgres" />
+        <module name="Ej7_PostgreSQL_AWS" />
         <module name="Ej6_JDBC_SQLite" />
       </profile>
     </annotationProcessing>
