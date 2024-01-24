@@ -103,6 +103,7 @@ public class OperacionesCRUDPilotos {
         try (Connection con = DriverManager.getConnection(urlConexion, usuario, password)){
             String update = "UPDATE drivers SET code = ?, forename = ?, surname = ?, dob = ?, nationality = ?  WHERE driverid = ?";
             consulta = con.prepareStatement(update);
+
             consulta.setString(1, p.getCode());
             consulta.setString(2, p.getForename());
             consulta.setString(3, p.getSurname());
@@ -120,6 +121,8 @@ public class OperacionesCRUDPilotos {
             consulta = con.prepareStatement(update);
             consulta.setInt(1, id);
             consulta.executeUpdate();
+
+
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         }

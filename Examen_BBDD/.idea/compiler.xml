@@ -7,18 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="EJ1-postgres" />
-        <module name="Ej7_PostgreSQL_AWS" />
-        <module name="Ej7_Postgres_AWS" />
         <module name="Examen_BBDD" />
-        <module name="Ej6_JDBC_SQLite" />
-        <module name="Ej6_SOL_SQLITE" />
-        <module name="Transacciones" />
-        <module name="EJ7_LAURA_SOL_AWS" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="EjemploPostGress" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS races (
 
 CREATE TABLE IF NOT EXISTS results (
     resultid INTEGER NOT NULL PRIMARY KEY,
-    raceid INTEGER NOT NULL,
+    raceid INTEGER NOT NULL,DATE
     driverid INTEGER NOT NULL,
     grid INTEGER NOT NULL,
     position INTEGER,

@@ -14,7 +14,7 @@ public class Main {
         //OperacionesCRUDPilotos.crearPiloto(pilotoParam);
 
 //ejer2
-        Piloto nuevoPiloto= OperacionesCRUDPilotos.LeerPiloto(35);
+        Piloto nuevoPiloto= OperacionesCRUDPilotos.LeerPiloto(2);
         System.out.println(nuevoPiloto.getForename());
 
 
